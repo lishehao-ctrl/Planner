@@ -60,6 +60,21 @@ UI is still placeholder-level and not yet wired to interactive actions.
   - `src/state/store.test.ts`
   - covers init, persisted markDone, locked-segment shift behavior
 
+### Security Hardening (Toolchain)
+- Upgraded lint toolchain to align with security fixes:
+  - `eslint` -> `^10.0.1`
+  - `@eslint/js` -> `^10.0.1`
+  - `typescript-eslint` -> `^8.56.0`
+  - `eslint-plugin-react-hooks` -> `7.1.0-canary-ab18f33d-20260220`
+  - `eslint-plugin-react-refresh` -> `^0.5.0`
+- Added targeted `overrides` in `package.json` for `minimatch` to address advisory chain:
+  - `@typescript-eslint/typescript-estree > minimatch = 10.2.2`
+  - `@eslint/config-array > minimatch = 10.2.2`
+  - `@eslint/eslintrc > minimatch = 10.2.2`
+- Security check status after reinstall:
+  - `npm audit --omit=dev` -> `found 0 vulnerabilities`
+  - `npm audit` -> `found 0 vulnerabilities`
+
 ## Current Test Status
 Latest local run:
 - `npm run test` -> PASS
